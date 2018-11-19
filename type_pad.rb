@@ -5,14 +5,13 @@ class TypePad
     raise "error, needs to be a non empty string" unless !string.empty?
     @string = string.upcase
     @keypad = (2..9).to_a
-    @alph_array = set_alph_array
     @hash_map = {}
   end
 
   def search_text
     #takes array of alphabet elements that corresponds to phone typad
     #and creates a hash map with the number that corresponds
-    @alph_array.each do |elm|
+    alph_array.each do |elm|
       key = @keypad.first
       map_string_num(key, elm)
       @keypad.delete(key)
@@ -38,7 +37,7 @@ class TypePad
     end
   end
 
-  def set_alph_array
+  def alph_array
     #creates an array of numbers that is in the same format as a phones typad
     map_alph(("A".."O"), 3) + map_alph(("P".."S"), 4) + map_alph(("T".."V"), 3) + map_alph(("W".."Z"), 4)
   end
