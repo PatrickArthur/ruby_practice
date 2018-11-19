@@ -1,6 +1,11 @@
 #class that allows a user to input a string and return a number from a phone typepad
 
 class TypePad
+
+  def self.search_text(string)
+    new(string).print_results
+  end
+
   def initialize(string)
     raise "error, needs to be a non empty string" unless !string.empty?
     @string = string.upcase
@@ -8,7 +13,7 @@ class TypePad
     @hash_map = {}
   end
 
-  def search_text
+  def print_results
     #takes array of alphabet elements that corresponds to phone typad
     #and creates a hash map with the number that corresponds
     alph_array.each do |elm|
@@ -16,10 +21,10 @@ class TypePad
       map_string_num(key, elm)
       @keypad.delete(key)
     end
-    print_results
+    process
   end
 
-  def print_results
+  def process
     output = @string.chars.map {|str| @hash_map[str] }.join (" ")
     puts "#{@string} prints to #{output}"
   end
@@ -47,5 +52,5 @@ class TypePad
   end
 end
 
-test = TypePad.new("mike")
-test.search_text
+TypePad.search_text("BATMAN")
+
