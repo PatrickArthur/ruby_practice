@@ -1,4 +1,5 @@
 #class that allows a user to input a string and return a number from a phone typepad
+require 'pry'
 
 class TypePad
 
