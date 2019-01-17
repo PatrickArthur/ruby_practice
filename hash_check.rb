@@ -13,8 +13,7 @@ def hash_check(start_hash, end_hash, hash = {})
   else
     if st.last.class == Hash && ed.last.class == Hash
       hash2 = {}
-      test = hash_check(st.last, ed.last, hash2)
-      hash[key] = test
+      hash[key] = hash_check(st.last, ed.last, hash2)
     else
       hash[key] = st.last != ed.last ? [st.last, ed.last] : st.last
       [start_hash, end_hash].each {|x| x.delete(key)}
@@ -24,7 +23,7 @@ def hash_check(start_hash, end_hash, hash = {})
   hash
 end
 
-start_hash = {name: "john", age: 29, location: {city: "Albany", state: "MA"}}
+start_hash = {name: "mike", age: 29, location: {city: "Albany", state: "NY"}}
 end_hash = {name: "mike", age: 28, location: {city: "Brooklyn", state: "NY"}}
 
 puts hash_check(start_hash, end_hash)
