@@ -5,17 +5,16 @@
 
 def hash_check(start_hash, end_hash, hash = {})
   key = (start_hash.keys + end_hash.keys).uniq.first
-  st = start_hash.first
-  ed = end_hash.first
+  st = start_hash.first.last unless start_hash.first.nil?
+  ed = end_hash.first.last unless end_hash.first.nil?
 
   if start_hash.empty? && end_hash.empty?
     hash
   else
-    if st.last.class == Hash && ed.last.class == Hash
-      hash2 = {}
-      hash[key] = hash_check(st.last, ed.last, hash2)
+    if st.class == Hash && ed.class == Hash
+      hash[key] = hash_check(st, ed, {})
     else
-      hash[key] = st.last != ed.last ? [st.last, ed.last] : st.last
+      hash[key] = st != ed ? [st, ed] : st
       [start_hash, end_hash].each {|x| x.delete(key)}
       hash_check(start_hash, end_hash, hash)
     end
